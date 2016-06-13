@@ -8,6 +8,9 @@
 /.project
 /.settings/
 
+# IntelliJ files.
+/.idea
+
 # Generated files
 /src/gen/
 /src/gen-res/
