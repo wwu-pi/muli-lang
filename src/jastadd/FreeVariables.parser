@@ -1,0 +1,8 @@
+VariableDeclarator variable_declarator = free_variable_declarator;
+
+FreeVariableDeclarator free_variable_declarator =
+    free_variable_declarator_id.v FREE {: return v; :}
+
+FreeVariableDeclarator free_variable_declarator_id =
+    IDENTIFIER dims.d?                       {: return new FreeVariableDeclarator(IDENTIFIER, d, new Opt()); :}
+  ;

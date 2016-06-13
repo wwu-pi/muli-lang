@@ -14,6 +14,7 @@ module "muli-lang", { // TODO Replace with your own module name.
 		include "**/*.ast"
 		include "**/*.jadd"
 		include "**/*.jrag"
+		include "**/*.flex"
 	}
 
 	//scanner {
