@@ -1,6 +1,6 @@
 include("extendj/jastadd_modules") // Include the core ExtendJ modules.
 
-module "extension-base", { // TODO Replace with your own module name.
+module "muli-lang", { // TODO Replace with your own module name.
 
 	imports "java8 frontend"
 

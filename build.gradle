@@ -17,7 +17,7 @@ jastadd {
 	modules 'jastadd_modules' // Load module specifications from this file.
 
 	// Target module to build:
-	module = 'extension-base' // TODO Replace with your own module name.
+	module = 'muli-lang'
 
 	astPackage = 'org.extendj.ast'
 	genDir = 'src/gen/java'
@@ -46,13 +46,14 @@ targetCompatibility = '1.7'
 task sourceZip(type: Zip) {
 	description 'Builds a Zip file with the entire repisotory (including the ExtendJ submodule).'
 	destinationDir = projectDir
-	archiveName = "extension-base.zip"
+	archiveName = "muli-lang.zip"
 
 	from (projectDir) {
 		exclude '**/.git'
 		exclude '**/.gitignore'
 		exclude '**/.gitattributes'
 		exclude '**/.gitmodules'
+		exclude '**/.idea'
 		exclude 'build'
 		exclude 'bin'
 		exclude '.gradle'
@@ -66,5 +67,5 @@ task sourceZip(type: Zip) {
 		exclude '**/*.swp'
 	}
 
-	into 'extension-base'
+	into 'muli-lang'
 }
