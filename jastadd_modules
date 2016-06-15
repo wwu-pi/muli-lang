@@ -14,15 +14,16 @@ module "muli-lang", { // TODO Replace with your own module name.
 		include "**/*.ast"
 		include "**/*.jadd"
 		include "**/*.jrag"
+	}
+
+	scanner {
+		basedir "src/scanner/"
 		include "**/*.flex"
 	}
 
-	//scanner {
-	// TODO List your scanner specification additions here.
-	//}
-
-	//parser {
-	// TODO List your parser specification additions here.
-	//}
+	parser {
+		basedir "src/parser/"
+		include "**/*.parser"
+	}
 }
 
