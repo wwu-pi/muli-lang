@@ -1,0 +1,4 @@
+aspect FreeDeclaration {
+  interface FreeDeclarator {
+  }
+}

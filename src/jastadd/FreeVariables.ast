@@ -1,5 +1,2 @@
-FreeDeclarator : Declarator;
-
-FreeVariableDeclarator : FreeDeclarator;
-
-FreeFieldDeclarator : FreeDeclarator;
+FreeVariableDeclarator : VariableDeclarator;
+FreeFieldDeclarator : FieldDeclarator;

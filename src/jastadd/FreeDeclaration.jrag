@@ -1,0 +1,4 @@
+aspect FreeDeclaration {
+  FreeVariableDeclarator implements FreeDeclarator;
+  FreeFieldDeclarator implements FreeDeclarator;
+}
