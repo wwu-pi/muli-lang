@@ -1,7 +1,21 @@
 aspect ExtensionBase {
 
   public void CompilationUnit.process() {
-    System.out.println(pathName() + " contained no errors");
+    for (TypeDecl type : getTypeDeclList()) {
+      System.out.println("Type: " + type.name());
+      for (BodyDecl decl : type.getBodyDeclList()) {
+      // MethodDecl:
+        decl.printMethod(); // get INNER free vars!!
+      // FieldDecl: -> getDeclarators().forEach ... :: FieldDeclarator
+      }
+    }
   }
 
+  public void BodyDecl.printMethod() {}
+  public void MethodDecl.printMethod() {
+    System.out.println("\t" + name());
+  }
+  public void FieldDecl.printMethod() {
+    System.out.println("\t" + getID());
+  }
 }
