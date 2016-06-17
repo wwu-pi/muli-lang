@@ -7,3 +7,12 @@ FreeVariableDeclarator free_variable_declarator =
 FreeVariableDeclarator free_variable_declarator_id =
     IDENTIFIER dims.d?                       {: return new FreeVariableDeclarator(IDENTIFIER, d, new Opt()); :}
 ;
+
+FieldDeclarator field_declarator = free_field_declarator;
+
+FreeFieldDeclarator free_field_declarator =
+    free_field_declarator_id.v FREE {:  return v; :}
+;
+FreeFieldDeclarator free_field_declarator_id =
+    IDENTIFIER dims.d?                       {: return new FreeFieldDeclarator(IDENTIFIER, d, new Opt()); :}
+;
