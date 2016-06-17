@@ -1,0 +1,7 @@
+public class MuliTest {
+    public int whatisthis free;
+
+    private void testfun() {
+        int x free;
+    }
+}
