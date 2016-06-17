@@ -197,10 +197,10 @@ javac -d build/classes/main $(find src/java -name '*.java') \
     $(find src/gen -name '*.java') \
     $(find extendj/src/frontend -name '*.java') ${EXTRA_JAVA_SOURCES}
 mkdir -p src/gen-res
-echo "moduleName: Java SE 8" > src/gen-res/BuildInfo.properties
+echo "moduleName: Muli Lang (based on Java SE 8)" > src/gen-res/BuildInfo.properties
 echo "moduleVariant: frontend" >> src/gen-res/BuildInfo.properties
-echo "timestamp: 2016-06-16T15:37Z" >> src/gen-res/BuildInfo.properties
-echo "build.date: 2016-06-16" >> src/gen-res/BuildInfo.properties
+echo "timestamp: 2016-06-17T15:51Z" >> src/gen-res/BuildInfo.properties
+echo "build.date: 2016-06-17" >> src/gen-res/BuildInfo.properties
 jar cef "org.extendj.ExtensionMain" "muli-lang.jar" \
     -C build/classes/main . \
     -C src/gen-res BuildInfo.properties \

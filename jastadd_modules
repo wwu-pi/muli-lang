@@ -1,6 +1,9 @@
 include("extendj/jastadd_modules") // Include the core ExtendJ modules.
 
-module "muli-lang", { // TODO Replace with your own module name.
+module "muli-lang frontend", {
+
+	moduleName "Muli Lang (based on Java SE 8)"
+	moduleVariant "frontend"
 
 	imports "java8 frontend"
 
@@ -27,3 +30,14 @@ module "muli-lang", { // TODO Replace with your own module name.
 	}
 }
 
+/*module("muli-lang backend") {
+	moduleVariant "backend"
+
+	imports "muli-lang frontend"
+	imports "java8 backend"
+
+	jastadd {
+		include "backend/*.jadd"
+		include "backend/*.jrag"
+	}
+}*/

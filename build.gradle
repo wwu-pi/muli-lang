@@ -17,7 +17,7 @@ jastadd {
 	modules 'jastadd_modules' // Load module specifications from this file.
 
 	// Target module to build:
-	module = 'muli-lang'
+	module = 'muli-lang frontend'
 
 	astPackage = 'org.extendj.ast'
 	genDir = 'src/gen/java'
@@ -40,11 +40,11 @@ jar.manifest.attributes 'Main-Class': 'org.extendj.ExtensionMain'
 jar.destinationDir = projectDir
 
 // Java -source and -target version.
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 task sourceZip(type: Zip) {
-	description 'Builds a Zip file with the entire repisotory (including the ExtendJ submodule).'
+	description 'Builds a Zip file with the entire repository (including the ExtendJ submodule).'
 	destinationDir = projectDir
 	archiveName = "muli-lang.zip"
 
