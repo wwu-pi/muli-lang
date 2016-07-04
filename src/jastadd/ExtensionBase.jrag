@@ -4,18 +4,50 @@ aspect ExtensionBase {
     for (TypeDecl type : getTypeDeclList()) {
       System.out.println("Type: " + type.name());
       for (BodyDecl decl : type.getBodyDeclList()) {
-      // MethodDecl:
-        decl.printMethod(); // get INNER free vars!!
-      // FieldDecl: -> getDeclarators().forEach ... :: FieldDeclarator
+        if (decl instanceof MethodDecl) {
+          ((MethodDecl)decl).traverseMethod();
+        } else if (decl instanceof ConstructorDecl) {
+          ((ConstructorDecl)decl).traverseMethod();
+        } else if (decl instanceof FieldDecl) {
+          ((FieldDecl)decl).printFields();
+        } else {
+          System.out.println(decl.getClass().toString());
+        }
       }
     }
   }
 
-  public void BodyDecl.printMethod() {}
-  public void MethodDecl.printMethod() {
-    System.out.println("\t" + name());
+  public void MethodDecl.traverseMethod() {
+    System.out.println("\tMethod: " + name());
+    getBlock().traverseStmts();
   }
-  public void FieldDecl.printMethod() {
-    System.out.println("\t" + getID());
+
+  public void ConstructorDecl.traverseMethod() {
+    System.out.println("\tConstructor: " + name());
+    getBlock().traverseStmts();
+  }
+
+  public void Block.traverseStmts() {
+    for (Stmt stmt : getStmtList()) {
+      System.out.println(stmt.getClass().toString());
+      if (stmt instanceof WhileStmt) {
+        Stmt substmt = ((WhileStmt)stmt).getStmt();
+        if (substmt instanceof Block) {
+          ((Block)substmt).traverseStmts();
+        } else {
+          System.out.println(substmt.getClass().toString());
+        }
+
+      }
+    }
+  }
+
+  public void FieldDecl.printFields() {
+    System.out.println("\t" + getNumDeclarator() + " Fields; free:");
+    for (FieldDeclarator fd : getDeclaratorList()) {
+      if (fd instanceof FreeDeclarator) {
+        System.out.println("\t\t" + fd.getClass().toString());
+      }
+    }
   }
 }
