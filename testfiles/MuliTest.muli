@@ -1,7 +1,19 @@
 public class MuliTest {
-    public int whatisthis free;
+    public int whatisthis free, another free, fixednonfree;
 
     private void testfun() {
-        int x free;
+        int x free, y = 0;
+        boolean abc;
+        boolean abcd free;
+        boolean abc free;
+
+        while (y < 5) {
+            int a = 5 - y;
+            break;
+        }
+    }
+
+    public MuliTest() {
+        Object z free;
     }
 }
