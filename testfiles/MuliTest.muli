@@ -1,16 +1,20 @@
 public class MuliTest {
-    public int whatisthis free, another free, fixednonfree;
+    public int whatisthis
+    free, another
+            free, fixednonfree;
 
     private void testfun() {
         int x free, y = 0;
         boolean abc;
-        boolean abcd free;
+        // boolean abcd free = false;  Forbidden by compiler :)
         boolean abc free;
 
         while (y < 5) {
             int a = 5 - y;
             break;
         }
+
+        // while (y < 6) int x free; Not possible! :)
     }
 
     public MuliTest() {
