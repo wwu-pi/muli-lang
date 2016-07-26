@@ -2,10 +2,10 @@ package org.extendj;
 
 import org.extendj.ast.CompilationUnit;
 
-public class ExtensionMain extends JavaChecker {
+public class FrontendMain extends JavaChecker {
 
   public static void main(String args[]) {
-    int exitCode = new ExtensionMain().run(args);
+    int exitCode = new FrontendMain().run(args);
     if (exitCode != 0) {
       System.exit(exitCode);
     }
