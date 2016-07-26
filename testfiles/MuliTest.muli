@@ -10,7 +10,7 @@ public class MuliTest {
         boolean abc free;
 
         while (y < 5) {
-            int a = 5 - y;
+            int a = 5 - y - 1;
             break;
         }
 

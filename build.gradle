@@ -28,7 +28,9 @@ jastadd {
 sourceSets.main {
 	java {
 		srcDir 'extendj/src/frontend-main'
+		srcDir 'extendj/src/backend-main'
 		exclude 'org/extendj/PrettyPrintTask.java' // Avoid dependency on Apache Ant.
+		exclude 'org/extendj/JastAddJTask.java' // Avoid dependency on Apache Ant.
 	}
 	resources {
 		srcDir 'extendj/src/res'
@@ -36,7 +38,8 @@ sourceSets.main {
 	}
 }
 
-jar.manifest.attributes 'Main-Class': 'org.extendj.FrontendMain'
+//jar.manifest.attributes 'Main-Class': 'org.extendj.FrontendMain'
+jar.manifest.attributes 'Main-Class': 'org.extendj.BackendMain'
 jar.destinationDir = projectDir
 
 // Java -source and -target version.
