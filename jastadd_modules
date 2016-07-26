@@ -30,14 +30,16 @@ module "muli-lang frontend", {
 	}
 }
 
-/*module("muli-lang backend") {
+module("muli-lang backend") {
+    moduleName "Muli Lang Backend (based on Java SE 8)"
 	moduleVariant "backend"
 
 	imports "muli-lang frontend"
 	imports "java8 backend"
 
 	jastadd {
-		include "backend/*.jadd"
-		include "backend/*.jrag"
+	    basedir "src/backend"
+		include "**/*.jadd"
+		include "**/*.jrag"
 	}
-}*/
+}

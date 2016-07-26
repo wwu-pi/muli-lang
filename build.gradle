@@ -17,7 +17,7 @@ jastadd {
 	modules 'jastadd_modules' // Load module specifications from this file.
 
 	// Target module to build:
-	module = 'muli-lang frontend'
+	module = 'muli-lang backend'
 
 	astPackage = 'org.extendj.ast'
 	genDir = 'src/gen/java'
