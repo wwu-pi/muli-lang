@@ -1,0 +1,7 @@
+aspect MuliPrettyPrint {
+    public void FreeDeclarator.prettyPrint(PrettyPrinter out) {
+        out.print(getID());
+        out.print(getDimsList());
+        out.print(" free");
+    }
+}
