@@ -189,18 +189,56 @@ ${JASTADD} \
     'extendj/java8/frontend/Annotations.jrag' \
     'src/jastadd/FreeVariables.ast' \
     'src/jastadd/FreeDeclaration.jadd' \
+    'src/jastadd/PrettyPrint.jadd' \
     'src/jastadd/ExtensionBase.jrag' \
-    'src/jastadd/FreeDeclaration.jrag' ${EXTRA_JASTADD_SOURCES}
+    'src/jastadd/FreeDeclaration.jrag' \
+    'extendj/java4/backend/JVMBytecodes.jrag' \
+    'extendj/java4/backend/CreateBCode.jrag' \
+    'extendj/java4/backend/InnerClasses.jrag' \
+    'extendj/java4/backend/Java2Rewrites.jrag' \
+    'extendj/java4/backend/NTAFinally.jrag' \
+    'extendj/java4/backend/ConstantPoolNames.jrag' \
+    'extendj/java4/backend/GenerateClassfile.jrag' \
+    'extendj/java4/backend/Transformations.jrag' \
+    'extendj/java4/backend/CodeGeneration.jrag' \
+    'extendj/java4/backend/MonitorExit.jrag' \
+    'extendj/java4/backend/ConstantPool.jrag' \
+    'extendj/java4/backend/Attributes.jrag' \
+    'extendj/java4/backend/LocalNum.jrag' \
+    'extendj/java4/backend/JVMBytecodesDebug.jrag' \
+    'extendj/java4/backend/Flags.jrag' \
+    'extendj/java5/backend/EnhancedForCodegen.jrag' \
+    'extendj/java5/backend/EnclosingMethodAttribute.jrag' \
+    'extendj/java5/backend/StaticImportsCodegen.jrag' \
+    'extendj/java5/backend/GenericsCodegen.jrag' \
+    'extendj/java5/backend/AnnotationsCodegen.jrag' \
+    'extendj/java5/backend/AutoBoxingCodegen.jrag' \
+    'extendj/java5/backend/EnumsCodegen.jrag' \
+    'extendj/java5/backend/Version.jrag' \
+    'extendj/java5/backend/VariableArityParametersCodegen.jrag' \
+    'extendj/java7/grammar/BasicTWR.ast' \
+    'extendj/java7/backend/MultiCatch.jrag' \
+    'extendj/java7/backend/StringsInSwitch.jrag' \
+    'extendj/java7/backend/TryWithResources.jrag' \
+    'extendj/java7/backend/PreciseRethrow.jrag' \
+    'extendj/java8/backend/CreateBCode.jrag' \
+    'extendj/java8/backend/LambdaToClass.jrag' \
+    'extendj/java8/backend/MethodReferenceToClass.jrag' \
+    'extendj/java8/backend/ToClassInherited.jrag' \
+    'extendj/java8/backend/Transformations.jrag' \
+    'extendj/java8/backend/Tmp.jrag' \
+    'extendj/java8/backend/Version.jrag' \
+    'extendj/java8/backend/ConstructorReferenceToClass.jrag' ${EXTRA_JASTADD_SOURCES}
 echo "Compiling Java code..."
 mkdir -p build/classes/main
 javac -d build/classes/main $(find src/java -name '*.java') \
     $(find src/gen -name '*.java') \
     $(find extendj/src/frontend -name '*.java') ${EXTRA_JAVA_SOURCES}
 mkdir -p src/gen-res
-echo "moduleName: Muli Lang (based on Java SE 8)" > src/gen-res/BuildInfo.properties
-echo "moduleVariant: frontend" >> src/gen-res/BuildInfo.properties
-echo "timestamp: 2016-06-17T15:51Z" >> src/gen-res/BuildInfo.properties
-echo "build.date: 2016-06-17" >> src/gen-res/BuildInfo.properties
+echo "moduleName: Muli Lang Backend (based on Java SE 8)" > src/gen-res/BuildInfo.properties
+echo "moduleVariant: backend" >> src/gen-res/BuildInfo.properties
+echo "timestamp: 2016-07-26T11:36Z" >> src/gen-res/BuildInfo.properties
+echo "build.date: 2016-07-26" >> src/gen-res/BuildInfo.properties
 jar cef "org.extendj.ExtensionMain" "muli-lang.jar" \
     -C build/classes/main . \
     -C src/gen-res BuildInfo.properties \
