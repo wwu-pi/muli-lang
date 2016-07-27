@@ -4,12 +4,13 @@ public class MuliTest {
             free, fixednonfree;
 
     private void testfun() {
-        int x free, y = 0;
-        boolean abc;
-        // boolean abcd free = false;  Forbidden by compiler :)
+        int x free, y = 0, z;
         boolean abc free;
+        // boolean abcd free = false;  Forbidden by compiler :)
+        // boolean abc = true; // TODO: redeclaration is currently possible in extendj! => report
 
         while (y < 5) {
+            //if (!abc) continue;
             int a = 5 - y - 1;
             break;
         }

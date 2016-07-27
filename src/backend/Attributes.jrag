@@ -1,0 +1,23 @@
+aspect FreeVariableAttribute {
+  class FreeVariableAttribute extends Attribute {
+    public FreeVariableAttribute(CodeGeneration gen) {
+      super(gen.constantPool(), "FreeVariable");
+      u2(gen.localVariableTable.size());
+      for (CodeGeneration.LocalVariableEntry e : gen.localVariableTable) {
+        u2(e.start_pc);
+        u2(e.length);
+        u2(e.name_index);
+        u2(e.descriptor_index);
+        u2(e.index); // TODO use this as method-unique identifier. omit the others.
+      }
+    }
+  }
+
+  public void FreeVariableDeclarator.createBCode(CodeGeneration gen) {
+    System.out.println("FreeVarDecl " + name());
+    gen.addLocalVariableEntryAtCurrentPC(name(), type().typeDescriptor(),
+        localNum(), variableScopeEndLabel(gen));
+    type().emitStoreLocal(gen, localNum());
+
+  }
+}
