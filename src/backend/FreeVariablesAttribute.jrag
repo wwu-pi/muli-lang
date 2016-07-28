@@ -1,7 +1,13 @@
 aspect FreeVariablesAttribute {
   class FreeVariablesAttribute extends Attribute {
-    public FreeVariablesAttribute(FreeVariableStore fvs) {
-      super(fvs.constantPool(), "FreeVariables");
+    public FreeVariablesAttribute(ConstantPool cp, Collection<FreeVariableDeclarator> vars) {
+      super(cp, "FreeVariables");
+
+      FreeVariableStore fvs = new FreeVariableStore(cp);
+      for (FreeVariableDeclarator v : vars) {
+        fvs.addFreeVariableEntry(v.name(), v.localNum());
+      }
+
       u2(fvs.freeVariables.size());
       for (FreeVariableStore.FreeVariableEntry e : fvs.freeVariables) {
         u2(e.name_index); // Retained for debugging purposes
@@ -16,7 +22,7 @@ aspect FreeVariablesAttribute {
   // refine from Java5 GenericsCodegen, where method type signatures were added
   refine GenericsCodegen eq MethodDecl.attributes() {
     Collection<Attribute> attributes = refined();
-    attributes.add(new FreeVariablesAttribute(freeVariables(hostType().constantPool())));
+    attributes.add(new FreeVariablesAttribute(hostType().constantPool(), freeVariablesColl()));
     return attributes;
   }
 }

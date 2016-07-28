@@ -18,6 +18,10 @@ public class MuliTest {
         // while (y < 6) int x free; Not possible! :)
     }
 
+    public void moretest() {
+        String f free;
+    }
+
     public MuliTest() {
         Object z free;
     }

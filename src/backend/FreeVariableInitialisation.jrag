@@ -1,12 +1,15 @@
 aspect FreeVariableInitialisation {
-  syn lazy FreeVariableStore MethodDecl.freeVariables(ConstantPool constantPool) {
-    return new FreeVariableStore(constantPool);
-  }
+  coll Collection<FreeVariableDeclarator> MethodDecl.freeVariablesColl()
+    [new ArrayList<FreeVariableDeclarator>()]
+    root MethodDecl;
+  FreeVariableDeclarator contributes this
+    to MethodDecl.freeVariablesColl();
 
   public void FreeVariableDeclarator.createBCode(CodeGeneration gen) {
     System.out.println("FreeVarDecl " + name());
+    // Normally, uninitialised variables reserve a slot / variable index, but do not appear in the LocalVariableTable.
+    // However, a free variable is essentially initialised *as free*. Therefore, add an entry to that table.
     gen.addLocalVariableEntryAtCurrentPC(name(), type().typeDescriptor(),
         localNum(), variableScopeEndLabel(gen));
-    freeVariables(gen.constantPool()).addFreeVariableEntryAtCurrentPC(name(), localNum());
   }
 }

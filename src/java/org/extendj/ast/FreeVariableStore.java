@@ -18,14 +18,15 @@ public class FreeVariableStore {
         this.constantPool = cp;
     }
 
-    public FreeVariableStore addFreeVariableEntryAtCurrentPC(String name, int localNum) {
-        System.out.println("name:"+name+",index:"+localNum);
+    public FreeVariableStore addFreeVariableEntry(String name, int localNum) {
+        System.out.println("adding: name:"+name+",index:"+localNum); // TODO remove
         FreeVariableEntry e = new FreeVariableEntry();
 
         e.name_index = constantPool().addUtf8(name);
         e.index = localNum;
 
         freeVariables.add(e);
+        System.out.println("new number of FreeVariableEntry elements: "+freeVariables.size());
         return this;
     }
 
