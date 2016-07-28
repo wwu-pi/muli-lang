@@ -1,0 +1,12 @@
+aspect FreeVariableInitialisation {
+  syn lazy FreeVariableStore MethodDecl.freeVariables(ConstantPool constantPool) {
+    return new FreeVariableStore(constantPool);
+  }
+
+  public void FreeVariableDeclarator.createBCode(CodeGeneration gen) {
+    System.out.println("FreeVarDecl " + name());
+    gen.addLocalVariableEntryAtCurrentPC(name(), type().typeDescriptor(),
+        localNum(), variableScopeEndLabel(gen));
+    freeVariables(gen.constantPool()).addFreeVariableEntryAtCurrentPC(name(), localNum());
+  }
+}
