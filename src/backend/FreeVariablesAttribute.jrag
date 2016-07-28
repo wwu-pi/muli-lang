@@ -1,0 +1,25 @@
+aspect FreeVariablesAttribute {
+  class FreeVariablesAttribute extends Attribute {
+    public FreeVariablesAttribute(CodeGeneration gen) {
+      super(gen.constantPool(), "FreeVariables");
+      u2(gen.localVariableTable.size());
+      for (CodeGeneration.LocalVariableEntry e : gen.localVariableTable) {
+        u2(e.start_pc);
+        u2(e.length);
+        u2(e.name_index);
+        u2(e.descriptor_index);
+        u2(e.index); // TODO use this as method-unique identifier. omit the others.
+      }
+    }
+  }
+
+  // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations where added
+  // refine from Java5 GenericsCodegen, where method type signatures were added
+  refine GenericsCodegen eq MethodDecl.attributes() {
+    Collection<Attribute> attributes = refined();
+    if (needsFreeVariablesAttribute()) {
+      attributes.add(new SignatureAttribute(hostType().constantPool(), methodTypeSignature()));
+    }
+    return attributes;
+  }
+}
