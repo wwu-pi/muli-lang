@@ -25,4 +25,11 @@ aspect FreeVariablesAttribute {
     attributes.add(new FreeVariablesAttribute(hostType().constantPool(), freeVariablesColl()));
     return attributes;
   }
+
+  // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations where added
+  refine AnnotationsCodegen eq ConstructorDecl.attributes() {
+    Collection<Attribute> attributes = refined();
+    attributes.add(new FreeVariablesAttribute(hostType().constantPool(), freeVariablesColl()));
+    return attributes;
+  }
 }

@@ -5,6 +5,12 @@ aspect FreeVariableInitialisation {
   FreeVariableDeclarator contributes this
     to MethodDecl.freeVariablesColl();
 
+  coll Collection<FreeVariableDeclarator> ConstructorDecl.freeVariablesColl()
+    [new ArrayList<FreeVariableDeclarator>()]
+    root ConstructorDecl;
+  FreeVariableDeclarator contributes this
+    to ConstructorDecl.freeVariablesColl();
+
   public void FreeVariableDeclarator.createBCode(CodeGeneration gen) {
     System.out.println("FreeVarDecl " + name());
     // Normally, uninitialised variables reserve a slot / variable index, but do not appear in the LocalVariableTable.
