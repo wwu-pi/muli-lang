@@ -18,7 +18,7 @@ public class FreeVariableStore {
         this.constantPool = cp;
     }
 
-    public FreeVariableStore addFreeVariableEntry(String name, int localNum) {
+    public void addFreeVariableEntry(String name, int localNum) {
         System.out.println("adding: name:"+name+",index:"+localNum); // TODO remove
         FreeVariableEntry e = new FreeVariableEntry();
 
@@ -27,7 +27,6 @@ public class FreeVariableStore {
 
         freeVariables.add(e);
         System.out.println("new number of FreeVariableEntry elements: "+freeVariables.size());
-        return this;
     }
 
     public ConstantPool constantPool() {

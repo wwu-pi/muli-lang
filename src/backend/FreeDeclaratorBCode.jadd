@@ -1,0 +1,9 @@
+aspect FreeDeclaratorBCode {
+  public void FreeVariableDeclarator.createBCode(CodeGeneration gen) {
+    // Normally, uninitialised variables reserve a slot / variable index, but do not appear in the LocalVariableTable.
+    // However, a free variable is essentially initialised *as free*. Therefore, add an entry to that table.
+    gen.addLocalVariableEntryAtCurrentPC(name(), type().typeDescriptor(),
+        localNum(), variableScopeEndLabel(gen));
+    System.out.println("FreeVarDecl " + name()); // TODO remove this
+  }
+}

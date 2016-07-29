@@ -16,20 +16,33 @@ aspect FreeVariablesAttribute {
     }
   }
 
-
-
   // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations where added
   // refine from Java5 GenericsCodegen, where method type signatures were added
   refine GenericsCodegen eq MethodDecl.attributes() {
     Collection<Attribute> attributes = refined();
-    attributes.add(new FreeVariablesAttribute(hostType().constantPool(), freeVariablesColl()));
+    attributes.add(new FreeVariablesAttribute(hostType().constantPool(), freeVariables()));
     return attributes;
   }
 
   // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations where added
   refine AnnotationsCodegen eq ConstructorDecl.attributes() {
     Collection<Attribute> attributes = refined();
-    attributes.add(new FreeVariablesAttribute(hostType().constantPool(), freeVariablesColl()));
+    attributes.add(new FreeVariablesAttribute(hostType().constantPool(), freeVariables()));
     return attributes;
   }
+
+  // Make sure that FreeVariableDeclarators contribute to the freeVariables() collection.
+  FreeVariableDeclarator contributes this
+    to MethodDecl.freeVariables();
+
+  FreeVariableDeclarator contributes this
+    to ConstructorDecl.freeVariables();
+
+  coll Collection<FreeVariableDeclarator> MethodDecl.freeVariables()
+    [new ArrayList<>()]
+    root MethodDecl;
+
+  coll Collection<FreeVariableDeclarator> ConstructorDecl.freeVariables()
+    [new ArrayList<>()]
+    root ConstructorDecl;
 }
