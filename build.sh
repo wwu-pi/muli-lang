@@ -187,11 +187,10 @@ ${JASTADD} \
     'extendj/java8/frontend/LookupType.jrag' \
     'extendj/java8/frontend/VariableArityParameters.jrag' \
     'extendj/java8/frontend/Annotations.jrag' \
-    'src/jastadd/FreeVariables.ast' \
-    'src/jastadd/FreeDeclaration.jadd' \
-    'src/jastadd/PrettyPrint.jadd' \
-    'src/jastadd/ExtensionBase.jrag' \
-    'src/jastadd/FreeDeclaration.jrag' \
+    'src/frontend/FreeDeclarators.ast' \
+    'src/frontend/MuliPrettyPrint.jadd' \
+    'src/frontend/ExtensionBase.jrag' \
+    'src/frontend/FreeDeclarators.jrag' \
     'extendj/java4/backend/JVMBytecodes.jrag' \
     'extendj/java4/backend/CreateBCode.jrag' \
     'extendj/java4/backend/InnerClasses.jrag' \
@@ -239,9 +238,9 @@ javac -d build/classes/main $(find src/java -name '*.java') \
 mkdir -p src/gen-res
 echo "moduleName: Muli Lang Backend (based on Java SE 8)" > src/gen-res/BuildInfo.properties
 echo "moduleVariant: backend" >> src/gen-res/BuildInfo.properties
-echo "timestamp: 2016-07-29T10:13Z" >> src/gen-res/BuildInfo.properties
+echo "timestamp: 2016-07-29T14:49Z" >> src/gen-res/BuildInfo.properties
 echo "build.date: 2016-07-29" >> src/gen-res/BuildInfo.properties
-jar cef "org.extendj.BackendMain" "muli-lang.jar" \
+jar cef "de.wwu.muli.BackendMain" "muli-lang.jar" \
     -C build/classes/main . \
     -C src/gen-res BuildInfo.properties \
     -C extendj/src/res Version.properties

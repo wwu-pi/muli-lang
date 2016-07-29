@@ -1,6 +1,6 @@
-package org.extendj;
+package de.wwu.muli;
 
-import org.extendj.ast.CompilationUnit;
+import org.extendj.JavaCompiler;
 
 public class BackendMain extends JavaCompiler {
     // Options:

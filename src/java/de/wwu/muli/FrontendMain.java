@@ -1,5 +1,6 @@
-package org.extendj;
+package de.wwu.muli;
 
+import org.extendj.JavaChecker;
 import org.extendj.ast.CompilationUnit;
 
 public class FrontendMain extends JavaChecker {

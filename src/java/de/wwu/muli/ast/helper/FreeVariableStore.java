@@ -1,13 +1,15 @@
-package org.extendj.ast;
+package de.wwu.muli.ast.helper;
+
+import org.extendj.ast.ConstantPool;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class FreeVariableStore {
 
-    static class FreeVariableEntry {
-        int name_index;
-        int index;
+    public static class FreeVariableEntry {
+        public int name_index;
+        public int index;
     }
 
     private ConstantPool constantPool;

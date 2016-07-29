@@ -38,8 +38,8 @@ sourceSets.main {
 	}
 }
 
-//jar.manifest.attributes 'Main-Class': 'org.extendj.FrontendMain'
-jar.manifest.attributes 'Main-Class': 'org.extendj.BackendMain'
+//jar.manifest.attributes 'Main-Class': 'de.wwu.muli.FrontendMain'
+jar.manifest.attributes 'Main-Class': 'de.wwu.muli.BackendMain'
 jar.destinationDir = projectDir
 
 // Java -source and -target version.
