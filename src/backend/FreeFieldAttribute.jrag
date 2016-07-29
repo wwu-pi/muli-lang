@@ -1,0 +1,19 @@
+aspect FreeFieldAttribute {
+  class FreeFieldAttribute extends Attribute {
+    public FreeFieldAttribute(ConstantPool cp) {
+      super(cp, "FreeMember");
+
+      // No additional content required; attribute is essentially a flag.
+    }
+  }
+
+  // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations were added
+  // refine from Java5 GenericsCodegen, where method type signatures were added
+  //refine GenericsCodegen
+  eq FreeFieldDeclarator.attributes() {
+    Collection<Attribute> attributes = super.attributes();
+    attributes.add(new FreeFieldAttribute(hostType().constantPool()));
+    return attributes;
+  }
+
+}

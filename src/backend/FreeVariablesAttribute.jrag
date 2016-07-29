@@ -18,7 +18,7 @@ aspect FreeVariablesAttribute {
     }
   }
 
-  // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations where added
+  // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations were added
   // refine from Java5 GenericsCodegen, where method type signatures were added
   refine GenericsCodegen eq MethodDecl.attributes() {
     Collection<Attribute> attributes = refined();
@@ -26,7 +26,7 @@ aspect FreeVariablesAttribute {
     return attributes;
   }
 
-  // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations where added
+  // refine from Java5 AnnotationsCodegen, where RuntimeVisibleAnnotations and RuntimeInvisibleAnnotations were added
   refine AnnotationsCodegen eq ConstructorDecl.attributes() {
     Collection<Attribute> attributes = refined();
     attributes.add(new FreeVariablesAttribute(hostType().constantPool(), freeVariables()));
