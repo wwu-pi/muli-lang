@@ -5,19 +5,17 @@ mkdir -p "build/tmp"
 echo "Generating scanner..."
 cat \
     'extendj/java4/scanner/Header.flex' \
-    'extendj/java8/scanner/Preamble.flex' \
-    'extendj/java7/scanner/Macros.flex' \
+    'extendj/java4/scanner/Preamble.flex' \
+    'extendj/java4/scanner/Macros.flex' \
     'extendj/java4/scanner/RulesPreamble.flex' \
     'extendj/java4/scanner/WhiteSpace.flex' \
     'extendj/java4/scanner/Comments.flex' \
     'extendj/java4/scanner/Keywords.flex' \
+    'extendj/java4/scanner/Literals.flex' \
     'extendj/java4/scanner/Operators.flex' \
     'extendj/java4/scanner/Separators.flex' \
     'extendj/java5/scanner/Operators.flex' \
     'extendj/java5/scanner/Keywords.flex' \
-    'extendj/java7/scanner/Literals.flex' \
-    'extendj/java8/scanner/Separators.flex' \
-    'extendj/java8/scanner/Operators.flex' \
     'src/scanner/FreeVariables.flex' \
     'extendj/java5/scanner/Identifiers.flex' \
     'extendj/java4/scanner/Postamble.flex' \
@@ -37,17 +35,6 @@ cat \
     'extendj/java5/parser/StaticImports.parser' \
     'extendj/java5/parser/GenericMethods.parser' \
     'extendj/java5/parser/VariableArityParameters.parser' \
-    'extendj/java7/parser/MultiCatch.parser' \
-    'extendj/java7/parser/Diamond.parser' \
-    'extendj/java7/parser/Literals.parser' \
-    'extendj/java7/parser/TryWithResources.parser' \
-    'extendj/java8/parser/InterfaceMethods.parser' \
-    'extendj/java8/parser/NonGenericTypes.parser' \
-    'extendj/java8/parser/IntersectionCasts.parser' \
-    'extendj/java8/parser/Lambda.parser' \
-    'extendj/java8/parser/PackageModifier.parser' \
-    'extendj/java8/parser/ConstructorReference.parser' \
-    'extendj/java8/parser/MethodReference.parser' \
     'src/parser/FreeVariables.parser' \
     > "build/tmp/JavaParser.all"
 ${JASTADDPARSER} "build/tmp/JavaParser.all" "build/tmp/JavaParser.beaver"
@@ -65,7 +52,11 @@ ${JASTADD} \
     --cacheCycle=false \
     'extendj/java4/grammar/Java.ast' \
     'extendj/java4/grammar/NTAFinally.ast' \
+    'extendj/java4/grammar/Literals.ast' \
+    'extendj/java4/grammar/CatchClause.ast' \
     'extendj/java4/grammar/BoundNames.ast' \
+    'extendj/java4/frontend/Variable.jadd' \
+    'extendj/java4/frontend/Constant.jadd' \
     'extendj/java4/frontend/Options.jadd' \
     'extendj/java4/frontend/LibCompilationUnits.jadd' \
     'extendj/java4/frontend/StructuredPrettyPrint.jadd' \
@@ -105,6 +96,7 @@ ${JASTADD} \
     'extendj/java4/frontend/FrontendMain.jrag' \
     'extendj/java4/frontend/AnonymousClasses.jrag' \
     'extendj/java4/frontend/LookupVariable.jrag' \
+    'extendj/java4/frontend/Literals.jrag' \
     'extendj/java4/frontend/LookupType.jrag' \
     'extendj/java4/frontend/PrimitiveTypes.jrag' \
     'extendj/java4/frontend/BoundNames.jrag' \
@@ -127,6 +119,7 @@ ${JASTADD} \
     'extendj/java5/frontend/BytecodeDescriptor.jrag' \
     'extendj/java5/frontend/GenericsSubtype.jrag' \
     'extendj/java5/frontend/EnhancedFor.jrag' \
+    'extendj/java5/frontend/BytecodeReader.jrag' \
     'extendj/java5/frontend/StaticImports.jrag' \
     'extendj/java5/frontend/GenericsParTypeDecl.jrag' \
     'extendj/java5/frontend/Generics.jrag' \
@@ -137,56 +130,6 @@ ${JASTADD} \
     'extendj/java5/frontend/BytecodeSignatures.jrag' \
     'extendj/java5/frontend/Annotations.jrag' \
     'extendj/java6/frontend/Override.jrag' \
-    'extendj/java7/grammar/MultiCatch.ast' \
-    'extendj/java7/grammar/Literals.ast' \
-    'extendj/java7/grammar/TryWithResources.ast' \
-    'extendj/java7/grammar/Diamond.ast' \
-    'extendj/java7/frontend/Constant.jadd' \
-    'extendj/java7/frontend/PrettyPrint.jadd' \
-    'extendj/java7/frontend/SuppressWarnings.jrag' \
-    'extendj/java7/frontend/MultiCatch.jrag' \
-    'extendj/java7/frontend/Diamond.jrag' \
-    'extendj/java7/frontend/StringsInSwitch.jrag' \
-    'extendj/java7/frontend/SafeVarargs.jrag' \
-    'extendj/java7/frontend/UncheckedConversion.jrag' \
-    'extendj/java7/frontend/TryWithResources.jrag' \
-    'extendj/java7/frontend/Literals.jrag' \
-    'extendj/java7/frontend/PreciseRethrow.jrag' \
-    'extendj/java8/grammar/LambdaAnonymousDecl.ast' \
-    'extendj/java8/grammar/MethodReference.ast' \
-    'extendj/java8/grammar/ConstructorReference.ast' \
-    'extendj/java8/grammar/Lambda.ast' \
-    'extendj/java8/grammar/IntersectionCasts.ast' \
-    'extendj/java8/frontend/Variable.jadd' \
-    'extendj/java8/frontend/PrettyPrint.jadd' \
-    'extendj/java8/frontend/NameCheck.jrag' \
-    'extendj/java8/frontend/QualifiedNames.jrag' \
-    'extendj/java8/frontend/PolyExpressions.jrag' \
-    'extendj/java8/frontend/EffectivelyFinal.jrag' \
-    'extendj/java8/frontend/DataStructures.jrag' \
-    'extendj/java8/frontend/TypeHierarchyCheck.jrag' \
-    'extendj/java8/frontend/MethodSignature.jrag' \
-    'extendj/java8/frontend/LambdaBody.jrag' \
-    'extendj/java8/frontend/MethodReference.jrag' \
-    'extendj/java8/frontend/GenericsSubtype.jrag' \
-    'extendj/java8/frontend/EnclosingLambda.jrag' \
-    'extendj/java8/frontend/ConstructorReference.jrag' \
-    'extendj/java8/frontend/VariableDeclaration.jrag' \
-    'extendj/java8/frontend/LambdaExpr.jrag' \
-    'extendj/java8/frontend/Modifiers.jrag' \
-    'extendj/java8/frontend/TypeVariablePositions.jrag' \
-    'extendj/java8/frontend/TypeCheck.jrag' \
-    'extendj/java8/frontend/ExtraInheritedEqs.jrag' \
-    'extendj/java8/frontend/BytecodeReader.jrag' \
-    'extendj/java8/frontend/UnreachableStatements.jrag' \
-    'extendj/java8/frontend/TargetType.jrag' \
-    'extendj/java8/frontend/LambdaAnonymousDecl.jrag' \
-    'extendj/java8/frontend/LookupVariable.jrag' \
-    'extendj/java8/frontend/FunctionalInterface.jrag' \
-    'extendj/java8/frontend/FunctionDescriptor.jrag' \
-    'extendj/java8/frontend/LookupType.jrag' \
-    'extendj/java8/frontend/VariableArityParameters.jrag' \
-    'extendj/java8/frontend/Annotations.jrag' \
     'src/frontend/FreeDeclarators.ast' \
     'src/frontend/MuliPrettyPrint.jadd' \
     'src/frontend/ExtensionBase.jrag' \
@@ -215,19 +158,6 @@ ${JASTADD} \
     'extendj/java5/backend/EnumsCodegen.jrag' \
     'extendj/java5/backend/Version.jrag' \
     'extendj/java5/backend/VariableArityParametersCodegen.jrag' \
-    'extendj/java7/grammar/BasicTWR.ast' \
-    'extendj/java7/backend/MultiCatch.jrag' \
-    'extendj/java7/backend/StringsInSwitch.jrag' \
-    'extendj/java7/backend/TryWithResources.jrag' \
-    'extendj/java7/backend/PreciseRethrow.jrag' \
-    'extendj/java8/backend/CreateBCode.jrag' \
-    'extendj/java8/backend/LambdaToClass.jrag' \
-    'extendj/java8/backend/MethodReferenceToClass.jrag' \
-    'extendj/java8/backend/ToClassInherited.jrag' \
-    'extendj/java8/backend/Transformations.jrag' \
-    'extendj/java8/backend/Tmp.jrag' \
-    'extendj/java8/backend/Version.jrag' \
-    'extendj/java8/backend/ConstructorReferenceToClass.jrag' \
     'src/backend/FreeDeclaratorBCode.jadd' \
     'src/backend/FreeFieldAttribute.jrag' \
     'src/backend/FreeVariablesAttribute.jrag' ${EXTRA_JASTADD_SOURCES}
@@ -239,7 +169,7 @@ javac -d build/classes/main $(find src/java -name '*.java') \
 mkdir -p src/gen-res
 echo "moduleName: Muli Lang Backend (based on Java SE 8)" > src/gen-res/BuildInfo.properties
 echo "moduleVariant: backend" >> src/gen-res/BuildInfo.properties
-echo "timestamp: 2016-07-29T15:50Z" >> src/gen-res/BuildInfo.properties
+echo "timestamp: 2016-07-29T16:06Z" >> src/gen-res/BuildInfo.properties
 echo "build.date: 2016-07-29" >> src/gen-res/BuildInfo.properties
 jar cef "de.wwu.muli.BackendMain" "muli-lang.jar" \
     -C build/classes/main . \

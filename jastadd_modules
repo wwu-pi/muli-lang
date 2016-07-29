@@ -5,7 +5,8 @@ module "muli-lang frontend", {
 	moduleName "Muli Lang (based on Java SE 8)"
 	moduleVariant "frontend"
 
-	imports "java8 frontend"
+	imports "java6 frontend"
+	//imports "java8 frontend" // TODO: This would be better - but Muggl does not support it, yet.
 
 	java {
 		basedir "src/java/"
@@ -35,7 +36,8 @@ module("muli-lang backend") {
 	moduleVariant "backend"
 
 	imports "muli-lang frontend"
-	imports "java8 backend"
+	imports "java6 backend"
+	//imports "java8 backend" // TODO: This would be better - but Muggl does not support it, yet.
 
 	jastadd {
 	    basedir "src/backend"
