@@ -1,4 +1,7 @@
-aspect FreeDeclaration {
+aspect FreeDeclarators {
+  interface FreeDeclarator {
+  }
+
   FreeVariableDeclarator implements FreeDeclarator;
   FreeFieldDeclarator implements FreeDeclarator;
 }
