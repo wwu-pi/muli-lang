@@ -228,7 +228,9 @@ ${JASTADD} \
     'extendj/java8/backend/Transformations.jrag' \
     'extendj/java8/backend/Tmp.jrag' \
     'extendj/java8/backend/Version.jrag' \
-    'extendj/java8/backend/ConstructorReferenceToClass.jrag' ${EXTRA_JASTADD_SOURCES}
+    'extendj/java8/backend/ConstructorReferenceToClass.jrag' \
+    'src/backend/FreeDeclaratorBCode.jadd' \
+    'src/backend/FreeVariablesAttribute.jrag' ${EXTRA_JASTADD_SOURCES}
 echo "Compiling Java code..."
 mkdir -p build/classes/main
 javac -d build/classes/main $(find src/java -name '*.java') \
@@ -237,9 +239,9 @@ javac -d build/classes/main $(find src/java -name '*.java') \
 mkdir -p src/gen-res
 echo "moduleName: Muli Lang Backend (based on Java SE 8)" > src/gen-res/BuildInfo.properties
 echo "moduleVariant: backend" >> src/gen-res/BuildInfo.properties
-echo "timestamp: 2016-07-26T11:36Z" >> src/gen-res/BuildInfo.properties
-echo "build.date: 2016-07-26" >> src/gen-res/BuildInfo.properties
-jar cef "org.extendj.ExtensionMain" "muli-lang.jar" \
+echo "timestamp: 2016-07-29T10:13Z" >> src/gen-res/BuildInfo.properties
+echo "build.date: 2016-07-29" >> src/gen-res/BuildInfo.properties
+jar cef "org.extendj.BackendMain" "muli-lang.jar" \
     -C build/classes/main . \
     -C src/gen-res BuildInfo.properties \
     -C extendj/src/res Version.properties
