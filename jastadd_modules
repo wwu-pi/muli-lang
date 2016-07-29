@@ -13,7 +13,7 @@ module "muli-lang frontend", {
 	}
 
 	jastadd {
-		basedir "src/jastadd/"
+		basedir "src/frontend/"
 		include "**/*.ast"
 		include "**/*.jadd"
 		include "**/*.jrag"
