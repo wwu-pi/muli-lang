@@ -41,10 +41,10 @@ aspect FreeVariablesAttribute {
     to ConstructorDecl.freeVariables();
 
   coll Collection<FreeVariableDeclarator> MethodDecl.freeVariables()
-    [new ArrayList<>()]
+    [new ArrayList<FreeVariableDeclarator>()]
     root MethodDecl;
 
   coll Collection<FreeVariableDeclarator> ConstructorDecl.freeVariables()
-    [new ArrayList<>()]
+    [new ArrayList<FreeVariableDeclarator>()]
     root ConstructorDecl;
 }
