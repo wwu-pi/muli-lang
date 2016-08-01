@@ -167,10 +167,10 @@ javac -d build/classes/main $(find src/java -name '*.java') \
     $(find src/gen -name '*.java') \
     $(find extendj/src/frontend -name '*.java') ${EXTRA_JAVA_SOURCES}
 mkdir -p src/gen-res
-echo "moduleName: Muli Lang Backend (based on Java SE 8)" > src/gen-res/BuildInfo.properties
+echo "moduleName: Muli Lang Backend (based on Java SE 6)" > src/gen-res/BuildInfo.properties
 echo "moduleVariant: backend" >> src/gen-res/BuildInfo.properties
-echo "timestamp: 2016-07-29T16:27Z" >> src/gen-res/BuildInfo.properties
-echo "build.date: 2016-07-29" >> src/gen-res/BuildInfo.properties
+echo "timestamp: 2016-08-01T15:47Z" >> src/gen-res/BuildInfo.properties
+echo "build.date: 2016-08-01" >> src/gen-res/BuildInfo.properties
 jar cef "de.wwu.muli.BackendMain" "muli-lang.jar" \
     -C build/classes/main . \
     -C src/gen-res BuildInfo.properties \

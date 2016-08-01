@@ -2,7 +2,7 @@ include("extendj/jastadd_modules") // Include the core ExtendJ modules.
 
 module "muli-lang frontend", {
 
-	moduleName "Muli Lang (based on Java SE 8)"
+	moduleName "Muli Lang (based on Java SE 6)"
 	moduleVariant "frontend"
 
 	imports "java6 frontend"
@@ -32,7 +32,7 @@ module "muli-lang frontend", {
 }
 
 module("muli-lang backend") {
-    moduleName "Muli Lang Backend (based on Java SE 8)"
+    moduleName "Muli Lang Backend (based on Java SE 6)"
 	moduleVariant "backend"
 
 	imports "muli-lang frontend"
