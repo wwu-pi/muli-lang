@@ -9,6 +9,9 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'jastadd'
 
+group 'de.wwu.muli'
+version '1.0-SNAPSHOT'
+
 defaultTasks 'jar'
 
 jastadd {
