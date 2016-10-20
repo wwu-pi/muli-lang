@@ -18,9 +18,9 @@ public class BackendMain extends JavaCompiler {
     protected void printUsage() {
         super.printUsage();
         System.out.println(
-                    "  -XprettyPrint             Pretty-print the input file\n"
-                  + "  -XstructuredPrint         Pretty-print the input file, augmented with structural information\n"
-                  + "  -XdumpTree                Output the generated AST");
+                    "  -XprettyPrint             Mode: Pretty-print the input file\n"
+                  + "  -XstructuredPrint         Mode: Pretty-print the input file, augmented with structural information\n"
+                  + "  -XdumpTree                Mode: Output the generated AST");
 
     }
 }
