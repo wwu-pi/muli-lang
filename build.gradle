@@ -75,3 +75,23 @@ task sourceZip(type: Zip) {
 
 	into 'muli-lang'
 }
+
+repositories{
+	mavenLocal()
+}
+
+configurations {
+	mulicp
+}
+
+dependencies {
+	mulicp 'de.wwu.muli:muli-classpath:+'
+}
+
+jar {
+	into("/" ) {
+		from(configurations.mulicp) {
+			rename { "mulicp.jar" }
+		}
+	}
+}
