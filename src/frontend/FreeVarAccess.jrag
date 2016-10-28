@@ -1,0 +1,14 @@
+aspect FreeVarAccess {
+
+    refine DefiniteAssignment eq VarAccess.definiteAssignmentProblems() {
+        if (isSource() && decl() instanceof FreeDeclarator) {
+            // Always assume free variables to be initialised (similar to fields).
+            // Therefore, do not emit problems at compile time, but fail at runtime if necessary.
+            return new LinkedList<Problem>();
+        }
+        else {
+            // In any other case, use the default implementation of definiteAssignmentProblems()
+            return refined();
+        }
+    }
+}
