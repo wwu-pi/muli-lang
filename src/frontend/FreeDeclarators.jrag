@@ -2,6 +2,20 @@ aspect FreeDeclarators {
   interface FreeDeclarator {
   }
 
+  /** Dummy singleton that represents the "initialisation" (of some sorts) of a free variable */
+  /*public class FreeDeclaratorInit extends Expr {
+    private static FreeDeclaratorInit freeInit = new FreeDeclaratorInit();
+    private FreeDeclaratorInit() {}
+    public static FreeDeclaratorInit getFreeInit() {
+        return freeInit;
+    }
+  } DOES NOT WORK: Would have to mock a most-generic expr. // TODO DELETE */
+
   FreeVariableDeclarator implements FreeDeclarator;
   FreeFieldDeclarator implements FreeDeclarator;
+
+  // DOES NOT WORK: Cannot override AST method hasInit() // TODO DELETE
+  //syn boolean FreeVariableDeclarator.hasInit();
+  //eq FreeVariableDeclarator.hasInit() = true;
+
 }
