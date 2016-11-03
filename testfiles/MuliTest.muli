@@ -1,13 +1,23 @@
+package testfiles;
+
+import de.wwu.muli.Muli;
+import de.wwu.muli.Find;
+import de.wwu.muli.Solution;
+import de.wwu.muli.MuliFailException;
+
 public class MuliTest {
     public int whatisthis
     free, another
             free, fixednonfree;
 
+    public static int givenNumber;
+
     private void testfun() {
-        int x free, y = 0, z;
+        int x = 2, y = 0, z;
         boolean abc free;
-        // boolean abcd free = false;  Forbidden by compiler :)
-        // boolean abc = true; // TODO: redeclaration is currently possible in extendj! => report
+        //boolean abcd free = false;  Forbidden by compiler :)
+        // boolean abc = true; // redeclaration is now forbidden after having this reported to extendj! :)
+        System.out.println("Hi.");
 
         while (y < 5) {
             //if (!abc) continue;
@@ -15,7 +25,22 @@ public class MuliTest {
             break;
         }
 
+        this.givenNumber = 5;
+
+        Solution[] solution = Muli.search(Find.First, MuliTest::findLesser);
+        System.out.println(solution.length);
+
         // while (y < 6) int x free; Not possible! :)
+    }
+
+    public static Integer findLesser() {
+
+        int lesser free;
+        if (lesser < MuliTest.givenNumber) {
+            return lesser;
+        } else {
+            throw Muli.fail();
+        }
     }
 
     public void moretest() {
@@ -24,5 +49,11 @@ public class MuliTest {
 
     public MuliTest() {
         Object z free;
+    }
+
+    public static void main(String... args) {
+        MuliTest mt = new MuliTest();
+        mt.testfun();
+//        System.out.println("Bye!");
     }
 }

@@ -1,34 +1,68 @@
-package de.wwu.muli.showcase;
-import de.wwu.muli.stub.Muli;
-import de.wwu.muli.stub.Solution;
+package testfiles;
+
+import de.wwu.muli.Find;
+import de.wwu.muli.SearchStrategy;
+import de.wwu.muli.Solution;
+import de.wwu.muli.Muli;
+import java.util.function.Supplier;
+
+
+
 class EightQueens {
-	public static void eightQueens(int n) {
-		int[] queens = new int[n] free;
-		// try:
-		boolean[] s = Muli.muli((queens) -> modelConstraints(queens));
+
+	private static int queen1 free;
+	private static int queen2 free;
+	private static int queen3 free;
+	private static int queen4 free;
+	private static int queen5 free;
+	private static int queen6 free;
+	private static int queen7 free;
+	private static int queen8 free;
+	private static Integer[] queens;
+
+	public static void eightQueens() {
+
+		EightQueens.queens = new Integer[]{queen1, queen2, queen3, queen4, queen5, queen6, queen7, queen8}; //free
+
 		// allSolutions:
-		Solution<Integer>[] solutions = Muli.search( (queens, Muli.Search.ALL, Muli.Strategy.IterativeDeepening) -> {
-				printSolutions(queens);
-				System.out.println(); 
-				});
+		Solution[] solutions = Muli.search(Find.All, SearchStrategy.IterativeDeepening, EightQueens::findSolutions); //() -> { return false; });
 	}
-	public static void modelConstraints(int[] queens) {
+
+	public static boolean modelConstraints(Integer[] queens) {
 		// Constraint 0: Rows must be different.
 		// By definition; no code required.
+		boolean satisfied = true;
 		for (int i = 0; i < queens.length; i++) {
 			// Constraint 1: Limit domain.
-			queens[i] >= 0 && queens[i] < queens.length;
-			for (int j = i+1; j < queens.length; j++) {
-				// Constraint 1: Cols must be different.
-				queens[j] != queens[i];
-				// Constraint 2: Descending diagonals must be different.
-				queens[i] - queens[j] != i - j;
-				// Constraint 3: Ascending diagonals must be different.
-				queens[i] - queens[j] != j - i;
+			if (queens[i] >= 0 && queens[i] < queens.length) {
+				for (int j = i + 1; j < queens.length; j++) {
+					// Constraint 1: Cols must be different.
+					satisfied = satisfied && queens[j] != queens[i] &&
+						// Constraint 2: Descending diagonals must be different.
+						queens[i] - queens[j] != i - j &&
+						// Constraint 3: Ascending diagonals must be different.
+						queens[i] - queens[j] != j - i;
+					if (!satisfied) {
+						return false;
+					}
+				}
+			} else {
+				return false;
 			}
 		}
+		return satisfied;
 	}
-	public static void printSolutions(int[] queens) {
+
+	public static Boolean findSolutions() {
+		if (!modelConstraints(EightQueens.queens)) {
+			return false;
+		}
+		printSolutions(EightQueens.queens);
+		System.out.println();
+		return true;
+	}
+
+	public static void printSolutions(Integer[] queens) {
 		System.out.println("Solution:");
 		for (int i = 0; i < queens.length; i++) { // Rows.
 			for (int j = 0; j < queens.length; j++) { // Cols.
@@ -43,7 +77,7 @@ class EightQueens {
 	}
 
 	public static void main(String[] args) {
-		eightQueens(8);
+		eightQueens();
 	}
 }
 

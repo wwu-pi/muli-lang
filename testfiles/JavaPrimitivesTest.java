@@ -1,3 +1,4 @@
+package testfiles;
 public class JavaPrimitivesTest {
     public int whatisthis, another, fixednonfree;
 
