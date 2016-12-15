@@ -48,7 +48,8 @@ public class MuliTest {
     }
 
     public MuliTest() {
-        Object z free;
+       //Object z free;
+        int y = 0;
     }
 
     public static void main(String... args) {
