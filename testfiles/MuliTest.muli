@@ -33,13 +33,20 @@ public class MuliTest {
         // while (y < 6) int x free; Not possible! :)
     }
 
-    public static Integer findLesser() {
+    public static int findLesser() {
 
         int lesser free;
         if (lesser < MuliTest.givenNumber) {
-            return lesser;
+            System.err.println("branch a");
+            return 256 + lesser;
+        } else if (lesser == MuliTest.givenNumber) {
+            //TODO throw some other exception;
+            System.err.println("branch b");
+            return 257 + lesser;
         } else {
-            throw Muli.fail();
+            //TODO throw Muli.fail();
+            System.err.println("branch c");
+            return 258 + lesser;
         }
     }
 
