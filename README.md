@@ -223,6 +223,19 @@ directory for the Jar file:
     sourceCompatibility = '1.7'
     targetCompatibility = '1.7'
 
+Rebuilding
+--------
+
+Although the Gradle plugin can handle some automatic rebuilding when a source file changes,
+it does not handle all cases well, so in some cases you will need to force Gradle to
+rebuild your project. This can be done passing the `--rerun-tasks` option to Gradle:
+
+    $ gradle --rerun-tasks
+
+
+Changes to the `jastadd_modules` file always require a rebuild to ensure that everything
+is generated from the current sources.
+
 Additional Resources
 --------------------
 
