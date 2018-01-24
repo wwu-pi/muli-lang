@@ -1,23 +1,68 @@
-buildscript {
-	repositories.mavenCentral()
-	repositories.mavenLocal()
-	dependencies {
-		classpath 'org.jastadd:jastaddgradle:1.10.4'
-	}
+plugins {
+  id 'java'
+  id 'org.jastadd' version '1.12.0'
 }
-
-apply plugin: 'java'
-apply plugin: 'jastadd'
 
 group 'de.wwu.muli'
 version '1.0-SNAPSHOT'
 
 defaultTasks 'jar'
 
+if (!file('extendj/jastadd_modules').exists()) {
+  throw new GradleException('ExtendJ seems to be missing. Please run "git submodule init", then "git submodule update".')
+}
+
 jastadd {
 	configureModuleBuild()
 
-	modules 'jastadd_modules' // Load module specifications from this file.
+//	modules 'jastadd_modules' // Load module specifications from this file.
+
+	modules {
+		include("extendj/jastadd_modules") // Includes the core ExtendJ modules.
+
+		module "muli-lang frontend", {
+			moduleName "Muli Lang (based on Java SE 8)"
+			moduleVariant "frontend"
+
+			imports "java8 frontend" // This module depends on "java8 frontend" from ExtendJ.
+
+			java {
+				basedir "src/java/"
+				include "**/*.java"
+			}
+
+			jastadd {
+				basedir "src/frontend/"
+				include "**/*.ast"
+				include "**/*.jadd"
+				include "**/*.jrag"
+			}
+
+			scanner {
+				basedir "src/scanner/"
+				include "**/*.flex"
+			}
+
+			parser {
+				basedir "src/parser/"
+				include "**/*.parser"
+			}
+		}
+
+		module("muli-lang backend") {
+			moduleName "Muli Lang Backend (based on Java SE 8)"
+			moduleVariant "backend"
+
+			imports "muli-lang frontend"
+			imports "java8 backend"
+
+			jastadd {
+				basedir "src/backend"
+				include "**/*.jadd"
+				include "**/*.jrag"
+			}
+		}
+	}
 
 	// Target module to build:
 	module = 'muli-lang backend'
@@ -35,8 +80,8 @@ sourceSets.main {
 	java {
 		srcDir 'extendj/src/frontend-main'
 		srcDir 'extendj/src/backend-main'
-		exclude 'org/extendj/PrettyPrintTask.java' // Avoid dependency on Apache Ant.
-		exclude 'org/extendj/JastAddJTask.java' // Avoid dependency on Apache Ant.
+//		exclude 'org/extendj/PrettyPrintTask.java' // Avoid dependency on Apache Ant.
+//		exclude 'org/extendj/JastAddJTask.java' // Avoid dependency on Apache Ant.
 	}
 	resources {
 		srcDir 'extendj/src/res'
@@ -49,8 +94,7 @@ jar.manifest.attributes 'Main-Class': 'de.wwu.muli.BackendMain'
 jar.destinationDir = projectDir
 
 // Java -source and -target version.
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = targetCompatibility = '1.8'
 
 task sourceZip(type: Zip) {
 	description 'Builds a Zip file with the entire repository (including the ExtendJ submodule).'
