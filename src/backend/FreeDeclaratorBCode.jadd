@@ -4,6 +4,10 @@ aspect FreeDeclaratorBCode {
     // However, a free variable is essentially initialised *as free*. Therefore, add an entry to that table.
     gen.addLocalVariableEntryAtCurrentPC(name(), type(),
         localNum(), variableScopeEndLabel(gen));
-    System.out.println("FreeVarDecl " + name()); // TODO remove this
+    // Also, ensure that maxLocals does not become lesser than the free variable's index, because it won't be found in
+    // static analyses (unlike variables that are actively set).
+    // (Act as if it were a parameter because that is the only publicly exposed way of marking the FV as initialised.)
+    gen.addParameter(localNum(), type());
+    System.out.println("FreeVarDecl " + name() + ":" + localNum()); // TODO remove this
   }
 }
