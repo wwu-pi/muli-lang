@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'de.wwu.muli'
-version '1.5.5-SNAPSHOT'
+version '1.6-SNAPSHOT'
 
 defaultTasks 'jar'
 
@@ -132,7 +132,7 @@ configurations {
 }
 
 dependencies {
-	mulicp 'de.wwu.muli:muli-classpath:1.5.5-SNAPSHOT'
+	mulicp 'de.wwu.muli:muli-classpath:1.6-SNAPSHOT'
 }
 
 jar {
