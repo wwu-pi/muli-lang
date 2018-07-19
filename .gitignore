@@ -10,6 +10,7 @@
 
 # IntelliJ files.
 /.idea
+/out
 
 # Generated files
 /src/gen/
