@@ -3,4 +3,4 @@
 	url = https://bitbucket.org/extendj/extendj
 [submodule "examples"]
 	path = examples
-	url = git@wiwi-gitlab.uni-muenster.de:j_dage01/muli-examples.git
+	url = git@github.com:Dagefoerde/muli-examples.git
