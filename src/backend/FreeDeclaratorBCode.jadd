@@ -8,6 +8,17 @@ aspect FreeDeclaratorBCode {
     // static analyses (unlike variables that are actively set).
     // (Act as if it were a parameter because that is the only publicly exposed way of marking the FV as initialised.)
     gen.addParameter(localNum(), type());
-    System.out.println("FreeVarDecl " + name() + ":" + localNum()); // TODO remove this
+    // Emit an explicit initialisation entry, so that variables can become re-initialised if they appear e. g. in loops.
+    this.generatePlaceholderInstructions(gen);
+    // TODO Maybe remove, maybe not? This aids in debugging -- ensuring that all freeVar have been handled!
+    System.out.println("FreeVarDecl " + name() + ":" + localNum());
+  }
+
+  public void FreeVariableDeclarator.generatePlaceholderInstructions(CodeGeneration gen) {
+    // Generate a placeholder and store it in the variable.
+    TypeDecl freeVarPlaceholderType = lookupType("de.wwu.muli.freevar", "FreeVariablePlaceholder");
+    gen.NEW(freeVarPlaceholderType);
+    gen.ASTORE(localNum(), freeVarPlaceholderType);
+    System.out.println("Init FreeVarDecl " + name() + ":" + localNum());
   }
 }

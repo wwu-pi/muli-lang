@@ -34,6 +34,8 @@ aspect FreeVariablesAttribute {
     return attributes;
   }
 
+  inh TypeDecl FreeVariableDeclarator.lookupType(String packageName, String typeName);
+
   // Make sure that FreeVariableDeclarators contribute to the freeVariables() collection.
   FreeVariableDeclarator contributes this
     to MethodDecl.freeVariables();
