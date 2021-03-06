@@ -132,7 +132,7 @@ configurations {
 }
 
 dependencies {
-	mulicp 'de.wwu.muli:muli-classpath:2.0.0-SNAPSHOT'
+	mulicp 'de.wwu.muli:muli-classpath:2.0.4-SNAPSHOT'
 }
 
 jar {
